@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace midorikocak\nano;
+namespace maciejbuchert\nano;
 
 use PHPUnit\Framework\TestCase;
 

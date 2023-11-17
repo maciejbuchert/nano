@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use midorikocak\nano\Api;
+use maciejbuchert\nano\Api;
 
 require __DIR__ . '/vendor/autoload.php';
 

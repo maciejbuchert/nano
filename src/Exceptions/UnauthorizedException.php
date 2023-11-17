@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace midorikocak\nano\Exceptions;
+namespace maciejbuchert\nano\Exceptions;
 
 use Exception;
 

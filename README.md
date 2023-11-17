@@ -33,7 +33,7 @@ Simply instantiate and include in your app.
 ``` php
 require __DIR__ . '/vendor/autoload.php';
 
-use midorikocak\nano\Api;
+use maciejbuchert\nano\Api;
 
 $api = new Api();
 
@@ -111,7 +111,7 @@ You can test your live API using `Guzzle/Client`
 
 declare(strict_types=1);
 
-namespace midorikocak\nano;
+namespace maciejbuchert\nano;
 
 use GuzzleHttp\Client;
 use PHPUnit\Framework\TestCase;

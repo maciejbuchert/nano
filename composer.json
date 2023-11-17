@@ -1,14 +1,15 @@
 {
-    "name": "midorikocak/nano",
+    "name": "maciejbuchert/nano",
     "type": "library",
     "description": "Nano is a very very tiny php app that allows you to create very fast rest interfaces.",
     "keywords": [
         "midorikocak",
         "nano",
         "api",
-        "rest"
+        "rest",
+        "maciejbuchert"
     ],
-    "homepage": "https://github.com/midorikocak/nano",
+    "homepage": "https://github.com/maciejbuchert/nano",
     "license": "MIT",
     "authors": [
         {
@@ -36,12 +37,12 @@
     },
     "autoload": {
         "psr-4": {
-            "midorikocak\\nano\\": "src"
+            "maciejbuchert\\nano\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "midorikocak\\nano\\": "tests"
+            "maciejbuchert\\nano\\": "tests"
         }
     },
     "scripts": {

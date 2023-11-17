@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace midorikocak\nano;
+namespace maciejbuchert\nano;
 
 use GuzzleHttp\Client;
 use PHPUnit\Framework\TestCase;
