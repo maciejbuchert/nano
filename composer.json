@@ -16,10 +16,15 @@
             "email": "mtkocak@gmail.com",
             "homepage": "https://mtkocak.net",
             "role": "Developer"
+        },
+        {
+            "name": "Maciej Buchert",
+            "email": "maciej@buchert.pl",
+            "role": "Developer"
         }
     ],
     "require": {
-        "php" : "~7.4",
+        "php" : "~8.2",
         "ext-json": "*"
     },
     "require-dev": {
@@ -50,6 +55,9 @@
         }
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }
