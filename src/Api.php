@@ -6,6 +6,7 @@ namespace maciejbuchert\nano;
 
 use maciejbuchert\nano\Exceptions\NotFoundException;
 
+use Psr\Log\LoggerInterface;
 use function array_key_exists;
 use function array_map;
 use function array_shift;
@@ -28,6 +29,17 @@ use function trim;
 
 use const PHP_URL_PATH;
 
+/**
+ * Class Api
+ *
+ * @method void get(string $endpoint, callable $fn)
+ * @method void post(string $endpoint, callable $fn)
+ * @method void put(string $endpoint, callable $fn)
+ * @method void delete(string $endpoint, callable $fn)
+ * @method void options(string $endpoint, callable $fn)
+ * @method void patch(string $endpoint, callable $fn)
+ * @method void head(string $endpoint, callable $fn)
+ */
 class Api
 {
     private array $endpoints = [];
@@ -36,9 +48,15 @@ class Api
     private string $origin = '*';
     private int $responseCode = 404;
 
-    public function __construct($origin = '*')
+    /**
+     * @var LoggerInterface|null
+     */
+    private ?LoggerInterface $logger;
+
+    public function __construct($origin = '*', ?LoggerInterface $logger = null)
     {
         $this->origin = $origin;
+        $this->logger = $logger;
     }
 
     public function setPrefix(string $prefix): void
@@ -67,6 +85,11 @@ class Api
         );
 
         $this->wildcards = $prefixWildcards;
+    }
+
+    public function setLogger(LoggerInterface $logger): void
+    {
+        $this->logger = $logger;
     }
 
     private function isOptions(): bool
@@ -118,14 +141,18 @@ class Api
             if (isset($this->endpoints[$method][$uri])) {
                 $fn = $this->endpoints[$method][$uri];
                 $this->responseCode = 200;
+                $this->logger?->info('Request', ['method' => $method, 'headers' => headers_list(), 'uri' => $uri, 'values' => $compared['values']]);
                 $fn();
+                $this->logger?->info('Response', ['code' => http_response_code()]);
             } elseif (!empty($compared)) {
                 if (!array_key_exists($compared['pattern'], $this->endpoints[$method])) {
                     throw new NotFoundException();
                 }
                 $fn = $this->endpoints[$method][$compared['pattern']];
                 $this->responseCode = 200;
+                $this->logger?->info('Request', ['method' => $method, 'headers' => headers_list(), 'uri' => $uri, 'values' => $compared['values']]);
                 $fn(...$compared['values']);
+                $this->logger?->info('Response', ['code' => http_response_code()]);
             }
         }
 

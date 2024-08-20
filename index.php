@@ -3,11 +3,18 @@
 declare(strict_types=1);
 
 use maciejbuchert\nano\Api;
+use Monolog\Handler\StreamHandler;
+use Monolog\Level;
+use Monolog\Logger;
 
 require __DIR__ . '/vendor/autoload.php';
 
 $api = new Api();
 
+$logger = new Logger("daily-logger", [
+    new StreamHandler('log.log', Level::Info)
+], [], new \DateTimeZone('Europe/Warsaw'));
+$api->setLogger($logger);
 
 $message = 'Welcome to Nano';
 
