@@ -27,9 +27,6 @@ final class ApiUnitTest extends TestCase
         unset($this->api);
     }
 
-    /**
-     * @runInSeparateProcess
-     */
     public function testApi(): void
     {
         $api = $this->api;
@@ -43,9 +40,6 @@ final class ApiUnitTest extends TestCase
         );
     }
 
-    /**
-     * @runInSeparateProcess
-     */
     public function testWildcards(): void
     {
         $api = $this->api;
@@ -59,9 +53,6 @@ final class ApiUnitTest extends TestCase
         );
     }
 
-    /**
-     * @runInSeparateProcess
-     */
     public function testAuth(): void
     {
         $api = $this->api;
@@ -83,9 +74,6 @@ final class ApiUnitTest extends TestCase
         );
     }
 
-    /**
-     * @runInSeparateProcess
-     */
     public function testUnauthorized(): void
     {
         $api = $this->api;

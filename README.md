@@ -102,6 +102,21 @@ $api->auth(function () use (&$api) {
 
 Hence the basic auth is not encrypted, using https is strictly advised.
 
+## Logging
+It's possible to requests and responses with Monolog.
+    
+``` php
+    use Monolog\Logger;
+    use Monolog\Handler\StreamHandler;
+    use Monolog\Level;
+    
+    $logger = new Logger('nano');
+    $logger->pushHandler(new StreamHandler('nano.log', Level::DEBUG));
+    
+    $api->setLogger($logger);
+```
+After setting the logger, all requests and responses will be logged into nano.log file.
+
 ## Testing
 
 You can test your live API using `Guzzle/Client`

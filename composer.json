@@ -25,8 +25,9 @@
         }
     ],
     "require": {
-        "php" : "~8.2",
-        "ext-json": "*"
+        "php": "~8.2",
+        "ext-json": "*",
+        "monolog/monolog": "^3.7"
     },
     "require-dev": {
         "guzzlehttp/guzzle": "^6.5",
