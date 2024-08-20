@@ -141,18 +141,18 @@ class Api
             if (isset($this->endpoints[$method][$uri])) {
                 $fn = $this->endpoints[$method][$uri];
                 $this->responseCode = 200;
-                $this->logger?->info('Request', ['method' => $method, 'headers' => headers_list(), 'uri' => $uri, 'values' => $compared['values']]);
+                $this->logger?->info('Request', ['method' => $method, 'uri' => $uri, 'values' => $compared['values'], 'headers' => getallheaders()]);
                 $fn();
-                $this->logger?->info('Response', ['code' => http_response_code()]);
+                $this->logger?->info('Response', ['code' => http_response_code(), 'headers' => headers_list(),]);
             } elseif (!empty($compared)) {
                 if (!array_key_exists($compared['pattern'], $this->endpoints[$method])) {
                     throw new NotFoundException();
                 }
                 $fn = $this->endpoints[$method][$compared['pattern']];
                 $this->responseCode = 200;
-                $this->logger?->info('Request', ['method' => $method, 'headers' => headers_list(), 'uri' => $uri, 'values' => $compared['values']]);
+                $this->logger?->info('Request', ['method' => $method, 'uri' => $uri, 'values' => $compared['values'], 'headers' => getallheaders()]);
                 $fn(...$compared['values']);
-                $this->logger?->info('Response', ['code' => http_response_code()]);
+                $this->logger?->info('Response', ['code' => http_response_code(), 'headers' => headers_list(),]);
             }
         }
 
